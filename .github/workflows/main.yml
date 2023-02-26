@@ -1,0 +1,39 @@
+name: Test with Chrome
+
+on:
+  push:
+    branches: [main]
+  schedule:
+      - cron: "0 9 * * *"
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Chrome and Chrome driver
+        run: |
+          Invoke-WebRequest -Uri 'https://dl.google.com/tag/s/defaultbrowser/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi' -OutFile 'chrome.msi'
+          Start-Process msiexec.exe -Wait -ArgumentList '/i chrome.msi /quiet /norestart'
+          Invoke-WebRequest -Uri 'https://chromedriver.storage.googleapis.com/103.0.5060.134/chromedriver_win32.zip' -OutFile 'chromedriver.zip'
+          Expand-Archive -Path 'chromedriver.zip' -DestinationPath $env:USERPROFILE
+      - name: Set up environment variables
+        run: |
+          setx /M PATH "$env:USERPROFILE\chromedriver;$env:USERPROFILE\chromedriver\bin;$env:PATH"
+          setx /M PYTHONIOENCODING "UTF-8"
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Python script
+        env:
+          CHROME_BIN: 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+        run: |
+          python test.py --discord https://discord.com/api/webhooks/1078828637253550251/JlLlXFw7bP1FBvJJeOKiF_8AXLUy5PezewytauPE2uYwiSMJOvgQJGqnM0Z6DB7d07Pf
