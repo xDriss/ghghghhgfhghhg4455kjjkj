@@ -1,0 +1,22 @@
+{
+    "testmldsb@hotmail.com": {
+        "Last check": "2023-02-24",
+        "Today's points": 465,
+        "Points": 465,
+        "Daily": false,
+        "Punch cards": false,
+        "More promotions": false,
+        "MSN shopping game": false,
+        "PC searches": false
+    },
+    "testmldsc@hotmail.com": {
+        "Last check": "2023-02-23",
+        "Today's points": 410,
+        "Points": 410,
+        "Daily": false,
+        "Punch cards": false,
+        "More promotions": false,
+        "MSN shopping game": false,
+        "PC searches": false
+    }
+}
