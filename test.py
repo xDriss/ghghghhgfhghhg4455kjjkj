@@ -1472,15 +1472,19 @@ def sendToDiscord(message):
         prRed("[ERROR] Could not send report to Discord.\n")
     
 def prRed(prt):
-    print(f"\033[91m{prt}\033[00m")
+    print(f"\033[91m{prt.encode('utf-8').decode(sys.stdout.encoding)}\033[00m")
 def prGreen(prt):
-    print(f"\033[92m{prt}\033[00m")
+    print(f"\033[92m{prt.encode('utf-8').decode(sys.stdout.encoding)}\033[00m")
+
 def prYellow(prt):
-    print(f"\033[93m{prt}\033[00m")
+    print(f"\033[93m{prt.encode('utf-8').decode(sys.stdout.encoding)}\033[00m")
+
 def prBlue(prt):
-    print(f"\033[94m{prt}\033[00m")
+    print(f"\033[94m{prt.encode('utf-8').decode(sys.stdout.encoding)}\033[00m")
+
 def prPurple(prt):
-    print(f"\033[95m{prt}\033[00m")
+    print(f"\033[95m{prt.encode('utf-8').decode(sys.stdout.encoding)}\033[00m")
+
 
 def logo():
     prRed("""
@@ -1490,7 +1494,7 @@ def logo():
     ██║╚██╔╝██║╚════██║    ██╔══╝  ██╔══██║██╔══██╗██║╚██╔╝██║██╔══╝  ██╔══██╗
     ██║ ╚═╝ ██║███████║    ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║███████╗██║  ██║
     ╚═╝     ╚═╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝""")
-    prPurple("            by @Charlesbel upgraded by @Farshadz1997        version 2.1\n")
+    prPurple(f"            by @Charlesbel upgraded by @Farshadz1997        version 2.1\n".encode('utf-8').decode(sys.stdout.encoding))
 
 try:
     account_path = Path(__file__).parent / 'accounts.json'
